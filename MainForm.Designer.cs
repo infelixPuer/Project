@@ -30,11 +30,11 @@
         {
             this.pStatusBar = new System.Windows.Forms.Panel();
             this.pButtons = new System.Windows.Forms.Panel();
-            this.pWindows = new System.Windows.Forms.Panel();
-            this.bTasks = new System.Windows.Forms.Button();
-            this.bTasksTypes = new System.Windows.Forms.Button();
-            this.bPleasantTasks = new System.Windows.Forms.Button();
             this.bPleasantTasksShop = new System.Windows.Forms.Button();
+            this.bPleasantTasks = new System.Windows.Forms.Button();
+            this.bTasksTypes = new System.Windows.Forms.Button();
+            this.bTasks = new System.Windows.Forms.Button();
+            this.pWindows = new System.Windows.Forms.Panel();
             this.pButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,35 +58,16 @@
             this.pButtons.Size = new System.Drawing.Size(150, 405);
             this.pButtons.TabIndex = 1;
             // 
-            // pWindows
+            // bPleasantTasksShop
             // 
-            this.pWindows.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pWindows.Location = new System.Drawing.Point(150, 45);
-            this.pWindows.Name = "pWindows";
-            this.pWindows.Size = new System.Drawing.Size(650, 405);
-            this.pWindows.TabIndex = 2;
-            // 
-            // bTasks
-            // 
-            this.bTasks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bTasks.Location = new System.Drawing.Point(0, 0);
-            this.bTasks.Name = "bTasks";
-            this.bTasks.Size = new System.Drawing.Size(150, 45);
-            this.bTasks.TabIndex = 0;
-            this.bTasks.Text = "Tasks";
-            this.bTasks.UseVisualStyleBackColor = true;
-            this.bTasks.Click += new System.EventHandler(this.bTasks_Click);
-            // 
-            // bTasksTypes
-            // 
-            this.bTasksTypes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bTasksTypes.Location = new System.Drawing.Point(0, 45);
-            this.bTasksTypes.Name = "bTasksTypes";
-            this.bTasksTypes.Size = new System.Drawing.Size(150, 45);
-            this.bTasksTypes.TabIndex = 1;
-            this.bTasksTypes.Text = "Tasks types";
-            this.bTasksTypes.UseVisualStyleBackColor = true;
-            this.bTasksTypes.Click += new System.EventHandler(this.bTasksTypes_Click);
+            this.bPleasantTasksShop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bPleasantTasksShop.Location = new System.Drawing.Point(0, 135);
+            this.bPleasantTasksShop.Name = "bPleasantTasksShop";
+            this.bPleasantTasksShop.Size = new System.Drawing.Size(150, 45);
+            this.bPleasantTasksShop.TabIndex = 3;
+            this.bPleasantTasksShop.Text = "Pleasant tasks shop";
+            this.bPleasantTasksShop.UseVisualStyleBackColor = true;
+            this.bPleasantTasksShop.Click += new System.EventHandler(this.bPleasantTasksShop_Click);
             // 
             // bPleasantTasks
             // 
@@ -99,16 +80,35 @@
             this.bPleasantTasks.UseVisualStyleBackColor = true;
             this.bPleasantTasks.Click += new System.EventHandler(this.bPleasantTasks_Click);
             // 
-            // bPleasantTasksShop
+            // bTasksTypes
             // 
-            this.bPleasantTasksShop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bPleasantTasksShop.Location = new System.Drawing.Point(0, 135);
-            this.bPleasantTasksShop.Name = "bPleasantTasksShop";
-            this.bPleasantTasksShop.Size = new System.Drawing.Size(150, 45);
-            this.bPleasantTasksShop.TabIndex = 3;
-            this.bPleasantTasksShop.Text = "Pleasant tasks shop";
-            this.bPleasantTasksShop.UseVisualStyleBackColor = true;
-            this.bPleasantTasksShop.Click += new System.EventHandler(this.bPleasantTasksShop_Click);
+            this.bTasksTypes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bTasksTypes.Location = new System.Drawing.Point(0, 45);
+            this.bTasksTypes.Name = "bTasksTypes";
+            this.bTasksTypes.Size = new System.Drawing.Size(150, 45);
+            this.bTasksTypes.TabIndex = 1;
+            this.bTasksTypes.Text = "Tasks types";
+            this.bTasksTypes.UseVisualStyleBackColor = true;
+            this.bTasksTypes.Click += new System.EventHandler(this.bTasksTypes_Click);
+            // 
+            // bTasks
+            // 
+            this.bTasks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bTasks.Location = new System.Drawing.Point(0, 0);
+            this.bTasks.Name = "bTasks";
+            this.bTasks.Size = new System.Drawing.Size(150, 45);
+            this.bTasks.TabIndex = 0;
+            this.bTasks.Text = "Tasks";
+            this.bTasks.UseVisualStyleBackColor = true;
+            this.bTasks.Click += new System.EventHandler(this.bTasks_Click);
+            // 
+            // pWindows
+            // 
+            this.pWindows.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pWindows.Location = new System.Drawing.Point(150, 45);
+            this.pWindows.Name = "pWindows";
+            this.pWindows.Size = new System.Drawing.Size(650, 405);
+            this.pWindows.TabIndex = 2;
             // 
             // MainForm
             // 

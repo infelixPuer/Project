@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Project.ChildForms;
 
-namespace Project.ChildForms
+public partial class TasksTypes : Form
 {
-    public partial class TasksTypes : Form
+    private List<TaskType> _types = new();
+
+
+    public TasksTypes()
     {
-        public TasksTypes()
+        InitializeComponent();
+        UploadDefaultTypes();
+
+        foreach (var item in _types)
         {
-            InitializeComponent();
+            item.SetTools(this);
         }
     }
+
+    private void UploadDefaultTypes()
+    {
+        _types.Add(new TaskType("Easy", 5));
+        _types.Add(new TaskType("Casual", 10));
+        _types.Add(new TaskType("Hard", 15));
+        _types.Add(new TaskType("Very hard", 25));
+    }
+
+    
 }
