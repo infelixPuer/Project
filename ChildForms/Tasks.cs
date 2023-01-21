@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Project.ChildForms;
 
-namespace Project.ChildForms
+public partial class Tasks : Form, ISavableControls
 {
-    public partial class Tasks : Form
+    public Tasks()
     {
-        public Tasks()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    public void LoadControls()
+    {
+        
+    }
+
+    public void SaveControls()
+    {
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Project;
+﻿using System.Text.Json;
+
+namespace Project;
 
 public class TaskType
 {
@@ -45,9 +47,9 @@ public class TaskType
     {
         _cbCompleted = new()
         {
+            AutoSize = true,
             Text = "",
             Location = new Point(LeftMargin, UpMargin + _id * DistanceBetweenTasks),
-            TabIndex = _id * 3,
             Visible = true
         };
         form.Controls.Add(_cbCompleted);
@@ -57,9 +59,7 @@ public class TaskType
             AutoSize = true,
             Text = Name,
             Location = new Point(_cbCompleted.Location.X + _cbCompleted.Size.Width + DistanceBetweenArguments,
-            _cbCompleted.Location.Y),
-            TabIndex = _id * 3 + 1,
-            Visible = true
+            _cbCompleted.Location.Y)
         };
         form.Controls.Add(_lName);
 
@@ -68,10 +68,8 @@ public class TaskType
             AutoSize = true,
             Text = Cost.ToString(),
             Location = new Point(_lName.Location.X + _lName.Size.Width + DistanceBetweenArguments,
-            _lName.Location.Y),
-            TabIndex = _id * 3 + 2,
-            Visible = true
+            _lName.Location.Y)
         };
         form.Controls.Add(_lCost);
-    }
+    }    
 }

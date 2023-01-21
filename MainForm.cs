@@ -1,7 +1,14 @@
+using Project.ChildForms;
+
 namespace Project;
 
 public partial class MainForm : Form
 {
+    private static readonly string TasksFileName = "Tasks.json";
+    private static readonly string TasksTypesFileName = "TasksTypes.json";
+    private static readonly string PleasantTasksFileName = "PleasantTasks.json";
+    private static readonly string PleasantTasksShopFileName = "PleasantTasksShop.json";
+
     private Form _activeForm;
 
     public MainForm()
@@ -11,22 +18,42 @@ public partial class MainForm : Form
 
     private void bTasks_Click(object sender, EventArgs e)
     {
-        ActivateChildForm(new ChildForms.Tasks());
+        if (_activeForm != null)
+        {
+            SaveFormControls((ISavableControls) _activeForm);
+        }
+
+        ActivateChildForm(new Tasks());
     }
 
     private void bTasksTypes_Click(object sender, EventArgs e)
     {
-        ActivateChildForm(new ChildForms.TasksTypes());
+        if (_activeForm != null)
+        {
+            SaveFormControls((ISavableControls)_activeForm);
+        }
+
+        ActivateChildForm(new TasksTypes());
     }
 
     private void bPleasantTasks_Click(object sender, EventArgs e)
     {
-        ActivateChildForm(new ChildForms.PleasantTasks());
+        if (_activeForm != null)
+        {
+            SaveFormControls((ISavableControls)_activeForm);
+        }
+
+        ActivateChildForm(new PleasantTasks());
     }
 
     private void bPleasantTasksShop_Click(object sender, EventArgs e)
     {
-        ActivateChildForm(new ChildForms.PleasantTasksShop());
+        if (_activeForm != null)
+        {
+            SaveFormControls((ISavableControls)_activeForm);
+        }
+
+        ActivateChildForm(new PleasantTasksShop());
     }
 
     private void ActivateChildForm(Form childForm)
@@ -36,7 +63,7 @@ public partial class MainForm : Form
             _activeForm.Activate();
         }
 
-        _activeForm = childForm;
+        _activeForm = childForm;        
         childForm.TopLevel = false;
         childForm.FormBorderStyle = FormBorderStyle.None;
         childForm.Dock = DockStyle.Fill;
@@ -44,5 +71,16 @@ public partial class MainForm : Form
         pWindows.Tag = childForm;
         childForm.BringToFront();
         childForm.Show();
+        LoadFormControls((ISavableControls)childForm);
+    }
+
+    private void SaveFormControls(ISavableControls form)
+    {
+        form.SaveControls();
+    }
+
+    private void LoadFormControls(ISavableControls form)
+    {
+        form.LoadControls();
     }
 }
