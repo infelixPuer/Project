@@ -7,7 +7,6 @@ public class TaskType
     private string _name;
     private int _cost;
     private static int s_count = 0;
-    private int _id;
 
     private CheckBox _cbCompleted;
     private Label _lName;
@@ -40,16 +39,15 @@ public class TaskType
     {
         _name = name;
         _cost = cost;
-        _id = s_count++;
     }
 
-    public void SetTools(Form form)
+    public void SetTools(Form form, int index)
     {
         _cbCompleted = new()
         {
             AutoSize = true,
             Text = "",
-            Location = new Point(LeftMargin, UpMargin + _id * DistanceBetweenTasks),
+            Location = new Point(LeftMargin, UpMargin + index * DistanceBetweenTasks),
             Visible = true
         };
         form.Controls.Add(_cbCompleted);
@@ -71,5 +69,10 @@ public class TaskType
             _lName.Location.Y)
         };
         form.Controls.Add(_lCost);
-    }    
+    }
+
+    public override string ToString()
+    {
+        return $"{Name} {Cost}";
+    }
 }

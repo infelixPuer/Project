@@ -120,6 +120,7 @@
             this.Controls.Add(this.pStatusBar);
             this.Name = "MainForm";
             this.Text = "Task Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.pButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 

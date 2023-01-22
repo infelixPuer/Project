@@ -4,16 +4,14 @@ namespace Project;
 
 public partial class MainForm : Form
 {
-    private static readonly string TasksFileName = "Tasks.json";
-    private static readonly string TasksTypesFileName = "TasksTypes.json";
-    private static readonly string PleasantTasksFileName = "PleasantTasks.json";
-    private static readonly string PleasantTasksShopFileName = "PleasantTasksShop.json";
+    public static List<TaskType> TaskTypes = new();
 
     private Form _activeForm;
 
     public MainForm()
     {
         InitializeComponent();
+        this.StartPosition = FormStartPosition.CenterScreen;
     }
 
     private void bTasks_Click(object sender, EventArgs e)
@@ -83,4 +81,9 @@ public partial class MainForm : Form
     {
         form.LoadControls();
     }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        SaveFormControls((ISavableControls)_activeForm);
+    }   
 }
