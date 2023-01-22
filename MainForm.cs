@@ -1,10 +1,16 @@
 using Project.ChildForms;
+using System.Text.Json;
 
 namespace Project;
 
 public partial class MainForm : Form
 {
+    private const string TaskTypesListFileName = "TaskTypesList.json";
+    private const string TasksListFileName = "TasksList.json";
+    private string _jsonString;
+
     public static List<TaskType> TaskTypes = new();
+    public static List<Task> Tasks = new();
 
     private Form _activeForm;
 
@@ -12,6 +18,30 @@ public partial class MainForm : Form
     {
         InitializeComponent();
         this.StartPosition = FormStartPosition.CenterScreen;
+
+        if (File.Exists(TaskTypesListFileName))
+        {
+            _jsonString = File.ReadAllText(TaskTypesListFileName);
+            TaskTypes = JsonSerializer.Deserialize<List<TaskType>>(_jsonString);
+        }
+        else
+        {
+            AddDefaultTypes();
+        }
+
+        if (File.Exists(TasksListFileName))
+        {
+            _jsonString = File.ReadAllText(TasksListFileName);
+            Tasks = JsonSerializer.Deserialize<List<Task>>(_jsonString);
+        }
+    }
+
+    private void AddDefaultTypes()
+    {
+        TaskTypes.Add(new TaskType("Easy", 5));
+        TaskTypes.Add(new TaskType("Casual", 10));
+        TaskTypes.Add(new TaskType("Hard", 15));
+        TaskTypes.Add(new TaskType("Very hard", 25));
     }
 
     private void bTasks_Click(object sender, EventArgs e)

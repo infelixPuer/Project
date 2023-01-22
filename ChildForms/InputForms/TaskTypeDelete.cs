@@ -4,7 +4,7 @@ namespace Project.ChildForms.InputForms;
 
 public partial class TaskTypeDelete : Form
 {
-    public TasksTypes parentForm { get; set; }
+    public TasksTypes ParentForm { get; set; }
 
     public TaskTypeDelete()
     {
@@ -20,11 +20,11 @@ public partial class TaskTypeDelete : Form
 
     private void TaskTypeDelete_FormClosing(object sender, FormClosingEventArgs e)
     {
-        var count = parentForm.Controls.Count - 2;
+        var count = ParentForm.Controls.Count - 2;
         for (int i = 0; i < count; i++)
         {
-            parentForm.Controls.RemoveAt(2);
+            ParentForm.Controls.RemoveAt(2);
         }
-        parentForm.DisplayDefaultTypes();
+        ParentForm.DisplayDefaultTypes();
     }
 }

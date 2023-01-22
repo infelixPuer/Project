@@ -6,7 +6,7 @@ namespace Project.ChildForms;
 
 public partial class TasksTypes : Form, ISavableControls
 {
-    private const string FileName = "TasksTypesControls.json";
+    private const string TaskTypesControlsFileName = "TasksTypesControls.json";
     private const string TaskTypesListFileName = "TaskTypesList.json";
     private string _jsonString;
 
@@ -18,7 +18,7 @@ public partial class TasksTypes : Form, ISavableControls
 
     private void UploadTypes()
     {
-        if (File.Exists(FileName)) 
+        if (File.Exists(TaskTypesControlsFileName)) 
         {
             return; 
         }
@@ -61,22 +61,16 @@ public partial class TasksTypes : Form, ISavableControls
         }
 
         _jsonString = JsonSerializer.Serialize(controlPropierties);
-        File.WriteAllText(FileName, _jsonString);
+        File.WriteAllText(TaskTypesControlsFileName, _jsonString);
         _jsonString = JsonSerializer.Serialize(TaskTypes);
         File.WriteAllText(TaskTypesListFileName, _jsonString);
     }
 
     public void LoadControls()
     {
-        if (File.Exists(TaskTypesListFileName))
-        {
-            _jsonString = File.ReadAllText(TaskTypesListFileName);
-            TaskTypes = JsonSerializer.Deserialize<List<TaskType>>(_jsonString);
-        }
+        if (!File.Exists(TaskTypesControlsFileName)) { return; }        
 
-        if (!File.Exists(FileName)) { return; }        
-
-        _jsonString = File.ReadAllText(FileName);
+        _jsonString = File.ReadAllText(TaskTypesControlsFileName);
         var controls = JsonSerializer.Deserialize<List<ControlProperties>>(_jsonString);
 
         if (controls == null) { return; }
@@ -107,15 +101,15 @@ public partial class TasksTypes : Form, ISavableControls
     {
         var inputForm = new InputForms.TaskTypeInput();
         inputForm.StartPosition = FormStartPosition.CenterScreen;
-        inputForm.parentForm = this;
-        inputForm.Show();
+        inputForm.ParentForm = this;
+        inputForm.ShowDialog();
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
         var deleteForm = new InputForms.TaskTypeDelete();
         deleteForm.StartPosition = FormStartPosition.CenterScreen;
-        deleteForm.parentForm = this;
-        deleteForm.Show();
+        deleteForm.ParentForm = this;
+        deleteForm.ShowDialog();
     }
 }

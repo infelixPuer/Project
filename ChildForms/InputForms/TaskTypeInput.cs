@@ -8,7 +8,7 @@ public partial class TaskTypeInput : Form
     private const string CostWarning = "Cost must consist of digits only!";
     private const string Caption = "Wrong spelling";
 
-    public TasksTypes parentForm { get; set; }
+    public TasksTypes ParentForm { get; set; }
 
     public TaskTypeInput()
     {
@@ -78,11 +78,11 @@ public partial class TaskTypeInput : Form
 
     private void TaskTypeInput_FormClosing(object sender, FormClosingEventArgs e)
     {
-        var count = parentForm.Controls.Count - 2;
+        var count = ParentForm.Controls.Count - 2;
         for (int i = 0; i < count; i++)
         {
-            parentForm.Controls.RemoveAt(2);
+            ParentForm.Controls.RemoveAt(2);
         }
-        parentForm.DisplayDefaultTypes();
+        ParentForm.DisplayDefaultTypes();
     }
 }

@@ -6,7 +6,6 @@ public class TaskType
 {
     private string _name;
     private int _cost;
-    private static int s_count = 0;
 
     private CheckBox _cbCompleted;
     private Label _lName;
