@@ -1,19 +1,23 @@
 using Microsoft.Win32;
 using Project.ChildForms;
+using Project.ChildForms.InputForms;
 using System.Text.Json;
 
 namespace Project;
 
 public partial class MainForm : Form
 {
-    private const string TaskTypesListFileName = "TaskTypesList.json";
     private const string TasksListFileName = "TasksList.json";
+    private const string TaskTypesListFileName = "TaskTypesList.json";
     private const string PleasantTasksListFileName = "PleasantTasksList.json";
+    private const string PleasantTasksShopListFileName = "PleasantTasksShopList.json";
+    private const string UserInfoFileName = "UserInfo.json";
     private string _jsonString;
 
-    public static List<TaskType> TaskTypesList = new();
     public static List<Task> TasksList = new();
+    public static List<TaskType> TaskTypesList = new();
     public static List<PleasantTask> PleasantTasksList = new();
+    public static List<PleasantTask> PleasantTasksShopList = new();
 
     public User User;
 
@@ -41,28 +45,44 @@ public partial class MainForm : Form
             TasksList = JsonSerializer.Deserialize<List<Task>>(_jsonString);
         }
 
-        if (File.Exists(PleasantTasksListFileName))
+        if (File.Exists(PleasantTasksShopListFileName))
         {
-            _jsonString = File.ReadAllText(PleasantTasksListFileName);
-            PleasantTasksList = JsonSerializer.Deserialize<List<PleasantTask>>(_jsonString);
+            _jsonString = File.ReadAllText(PleasantTasksShopListFileName);
+            PleasantTasksShopList = JsonSerializer.Deserialize<List<PleasantTask>>(_jsonString);
         }
         else
         {
             AddDefaultPleasantTasks();
         }
+
+        if (File.Exists(PleasantTasksListFileName))
+        {
+            _jsonString = File.ReadAllText(PleasantTasksListFileName);
+            PleasantTasksList = JsonSerializer.Deserialize<List<PleasantTask>>(_jsonString);
+        }
     }
 
-    private static void GetUserName()
+    private void GetUserName()
     {
         string keyName = "FirstRun";
-
+        //Registry.CurrentUser.DeleteSubKey("Project");
         var key = Registry.CurrentUser.CreateSubKey("Project");
 
         if (key.GetValue(keyName) == null)
         {
-
+            var userNameInputForm = new UserNameInput();
+            userNameInputForm.StartPosition = FormStartPosition.CenterScreen;
+            userNameInputForm.ParentForm = this;
+            userNameInputForm.ShowDialog();
             key.SetValue(keyName, false);
+            return;
         }
+
+        _jsonString = File.ReadAllText(UserInfoFileName);
+        User = JsonSerializer.Deserialize<User>(_jsonString);
+
+        lName.Text = User.Name;
+        lCurrentBalance.Text = User.Balance.ToString();
     }
 
     private void AddDefaultTypes()
@@ -75,10 +95,10 @@ public partial class MainForm : Form
 
     private void AddDefaultPleasantTasks()
     {
-        PleasantTasksList.Add(new PleasantTask("Go to the cinema", 25, ""));
-        PleasantTasksList.Add(new PleasantTask("Play computer games", 20, ""));
-        PleasantTasksList.Add(new PleasantTask("Buy ice-cream", 10, ""));
-        PleasantTasksList.Add(new PleasantTask("Make party", 40, ""));
+        PleasantTasksShopList.Add(new PleasantTask("Go to the cinema", 25, ""));
+        PleasantTasksShopList.Add(new PleasantTask("Play computer games", 20, ""));
+        PleasantTasksShopList.Add(new PleasantTask("Buy ice-cream", 10, ""));
+        PleasantTasksShopList.Add(new PleasantTask("Make party", 40, ""));
     }
 
     private void bTasks_Click(object sender, EventArgs e)
@@ -141,6 +161,8 @@ public partial class MainForm : Form
 
     private void SaveFormControls(ISavableControls form)
     {
+        if (form == null) { return; }
+
         form.SaveControls();
     }
 
@@ -152,5 +174,8 @@ public partial class MainForm : Form
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         SaveFormControls((ISavableControls)_activeForm);
+
+        _jsonString = JsonSerializer.Serialize(User);
+        File.WriteAllText(UserInfoFileName, _jsonString);
     }   
 }

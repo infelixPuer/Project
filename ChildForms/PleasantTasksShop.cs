@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Project.ChildForms.InputForms;
+using System.Reflection;
 using System.Text.Json;
 using static Project.MainForm;
 
@@ -6,8 +7,8 @@ namespace Project.ChildForms;
 
 public partial class PleasantTasksShop : Form, ISavableControls
 {
-    private const string PleasantTasksControlsFileName = "PleasantTasksControls.json";
-    private const string PleasantTasksListFileName = "PleasantTasksList.json";
+    private const string PleasantTasksControlsFileName = "PleasantTasksShopControls.json";
+    private const string PleasantTasksListFileName = "PleasantTasksShopList.json";
     private string _jsonString;
 
     public PleasantTasksShop()
@@ -28,9 +29,9 @@ public partial class PleasantTasksShop : Form, ISavableControls
 
     public void DisplayDefaultPleasantTasks()
     {
-        for (int i = 0; i < PleasantTasksList.Count; i++)
+        for (int i = 0; i < PleasantTasksShopList.Count; i++)
         {
-            PleasantTasksList[i].SetTools(this, i);
+            PleasantTasksShopList[i].SetTools(this, i);
         }
     }    
 
@@ -53,7 +54,7 @@ public partial class PleasantTasksShop : Form, ISavableControls
 
         _jsonString = JsonSerializer.Serialize(controlPropierties);
         File.WriteAllText(PleasantTasksControlsFileName, _jsonString);
-        _jsonString = JsonSerializer.Serialize(TaskTypesList);
+        _jsonString = JsonSerializer.Serialize(PleasantTasksShopList);
         File.WriteAllText(PleasantTasksListFileName, _jsonString);
     }
 
@@ -102,5 +103,26 @@ public partial class PleasantTasksShop : Form, ISavableControls
         inputForm.StartPosition = FormStartPosition.CenterScreen;
         inputForm.ParentForm = this;
         inputForm.ShowDialog();
+    }
+
+    private void bBuy_Click(object sender, EventArgs e)
+    {
+        var checkBoxes = new List<CheckBox>();
+
+        for (int i = 0; i < PleasantTasksShopList.Count; i++)
+        {
+            checkBoxes.Add((CheckBox)Controls.Find($"cbCompleted_{i}", true)[0]);
+        }
+
+        for (int i = 0; i < checkBoxes.Count; i++)
+        {
+            if (checkBoxes[i].Checked)
+            {
+                var inputForm = new InputDateForPleasantTask();
+                inputForm.StartPosition = FormStartPosition.CenterScreen;
+                inputForm.Index = i;
+                inputForm.ShowDialog();
+            }
+        }
     }
 }

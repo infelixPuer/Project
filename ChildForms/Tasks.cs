@@ -14,6 +14,14 @@ public partial class Tasks : Form, ISavableControls
         InitializeComponent();
     }
 
+    public void DisplayTasks()
+    {
+        for (int i = 0; i < MainForm.TasksList.Count; i++)
+        {
+            MainForm.TasksList[i].SetTools(this, i);
+        }
+    }
+
     public void SaveControls()
     {
         var controlPropierties = new List<ControlProperties>();
@@ -66,15 +74,7 @@ public partial class Tasks : Form, ISavableControls
                 Controls.Add(control);
             }
         }
-    }
-
-    public void DisplayTasks()
-    {
-        for (int i = 0; i < MainForm.TasksList.Count; i++)
-        {
-            MainForm.TasksList[i].SetTools(this, i);
-        }
-    }
+    }    
 
     private void bAdd_Click(object sender, EventArgs e)
     {

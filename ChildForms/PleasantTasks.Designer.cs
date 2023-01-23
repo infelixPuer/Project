@@ -28,32 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.bCompleted = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // bCompleted
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Pleasant tasks";
+            this.bCompleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bCompleted.Location = new System.Drawing.Point(713, 415);
+            this.bCompleted.Name = "bCompleted";
+            this.bCompleted.Size = new System.Drawing.Size(75, 23);
+            this.bCompleted.TabIndex = 0;
+            this.bCompleted.Text = "Completed";
+            this.bCompleted.UseVisualStyleBackColor = true;
+            this.bCompleted.Click += new System.EventHandler(this.bCompleted_Click);
             // 
             // PleasantTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
-            this.Name = "PleasantTasksList";
-            this.Text = "PleasantTasksList";
+            this.Controls.Add(this.bCompleted);
+            this.Name = "PleasantTasks";
+            this.Text = "PleasantTasks";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TextBox textBox1;
+        private Button bCompleted;
     }
 }

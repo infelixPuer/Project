@@ -27,7 +27,7 @@ public partial class PleasantTaskInput : Form
             return;
         }
 
-        MainForm.PleasantTasksList.Add(new PleasantTask(tbName.Text, int.Parse(tbCost.Text), ""));
+        MainForm.PleasantTasksShopList.Add(new PleasantTask(tbName.Text, int.Parse(tbCost.Text), ""));
         this.Close();
     }
 

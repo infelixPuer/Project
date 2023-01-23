@@ -35,11 +35,20 @@
             this.bTasksTypes = new System.Windows.Forms.Button();
             this.bTasks = new System.Windows.Forms.Button();
             this.pWindows = new System.Windows.Forms.Panel();
+            this.lBalance = new System.Windows.Forms.Label();
+            this.lCurrentBalance = new System.Windows.Forms.Label();
+            this.lUserName = new System.Windows.Forms.Label();
+            this.lName = new System.Windows.Forms.Label();
+            this.pStatusBar.SuspendLayout();
             this.pButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pStatusBar
             // 
+            this.pStatusBar.Controls.Add(this.lName);
+            this.pStatusBar.Controls.Add(this.lUserName);
+            this.pStatusBar.Controls.Add(this.lCurrentBalance);
+            this.pStatusBar.Controls.Add(this.lBalance);
             this.pStatusBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pStatusBar.Location = new System.Drawing.Point(0, 0);
             this.pStatusBar.Name = "pStatusBar";
@@ -110,6 +119,40 @@
             this.pWindows.Size = new System.Drawing.Size(650, 405);
             this.pWindows.TabIndex = 2;
             // 
+            // lBalance
+            // 
+            this.lBalance.AutoSize = true;
+            this.lBalance.Location = new System.Drawing.Point(12, 18);
+            this.lBalance.Name = "lBalance";
+            this.lBalance.Size = new System.Drawing.Size(51, 15);
+            this.lBalance.TabIndex = 0;
+            this.lBalance.Text = "Balance:";
+            // 
+            // lCurrentBalance
+            // 
+            this.lCurrentBalance.AutoSize = true;
+            this.lCurrentBalance.Location = new System.Drawing.Point(69, 18);
+            this.lCurrentBalance.Name = "lCurrentBalance";
+            this.lCurrentBalance.Size = new System.Drawing.Size(0, 15);
+            this.lCurrentBalance.TabIndex = 1;
+            // 
+            // lUserName
+            // 
+            this.lUserName.AutoSize = true;
+            this.lUserName.Location = new System.Drawing.Point(150, 18);
+            this.lUserName.Name = "lUserName";
+            this.lUserName.Size = new System.Drawing.Size(66, 15);
+            this.lUserName.TabIndex = 2;
+            this.lUserName.Text = "User name:";
+            // 
+            // lName
+            // 
+            this.lName.AutoSize = true;
+            this.lName.Location = new System.Drawing.Point(222, 18);
+            this.lName.Name = "lName";
+            this.lName.Size = new System.Drawing.Size(0, 15);
+            this.lName.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -121,6 +164,8 @@
             this.Name = "MainForm";
             this.Text = "Task Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.pStatusBar.ResumeLayout(false);
+            this.pStatusBar.PerformLayout();
             this.pButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -135,5 +180,9 @@
         private Button bPleasantTasks;
         private Button bTasksTypes;
         private Button bTasks;
+        public Label lName;
+        private Label lUserName;
+        public Label lCurrentBalance;
+        private Label lBalance;
     }
 }

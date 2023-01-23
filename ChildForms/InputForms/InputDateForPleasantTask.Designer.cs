@@ -1,6 +1,6 @@
 ﻿namespace Project.ChildForms.InputForms
 {
-    partial class UserNameInput
+    partial class InputDateForPleasantTask
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lUserName = new System.Windows.Forms.Label();
-            this.tbUserName = new System.Windows.Forms.TextBox();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.bConfirm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lUserName
+            // dtpDate
             // 
-            this.lUserName.AutoSize = true;
-            this.lUserName.Location = new System.Drawing.Point(87, 9);
-            this.lUserName.Name = "lUserName";
-            this.lUserName.Size = new System.Drawing.Size(63, 15);
-            this.lUserName.TabIndex = 0;
-            this.lUserName.Text = "User name";
+            this.dtpDate.Location = new System.Drawing.Point(12, 27);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(200, 23);
+            this.dtpDate.TabIndex = 0;
             // 
-            // tbUserName
+            // label1
             // 
-            this.tbUserName.Location = new System.Drawing.Point(12, 27);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(194, 23);
-            this.tbUserName.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(91, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Date";
             // 
             // bConfirm
             // 
-            this.bConfirm.Location = new System.Drawing.Point(226, 27);
+            this.bConfirm.Location = new System.Drawing.Point(235, 27);
             this.bConfirm.Name = "bConfirm";
             this.bConfirm.Size = new System.Drawing.Size(75, 23);
             this.bConfirm.TabIndex = 2;
@@ -59,18 +59,18 @@
             this.bConfirm.UseVisualStyleBackColor = true;
             this.bConfirm.Click += new System.EventHandler(this.bConfirm_Click);
             // 
-            // UserNameInput
+            // InputDateForPleasantTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 61);
+            this.ClientSize = new System.Drawing.Size(319, 61);
             this.Controls.Add(this.bConfirm);
-            this.Controls.Add(this.tbUserName);
-            this.Controls.Add(this.lUserName);
-            this.MaximumSize = new System.Drawing.Size(330, 100);
-            this.MinimumSize = new System.Drawing.Size(330, 100);
-            this.Name = "UserNameInput";
-            this.Text = "UserNameInput";
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpDate);
+            this.MaximumSize = new System.Drawing.Size(335, 100);
+            this.MinimumSize = new System.Drawing.Size(335, 100);
+            this.Name = "InputDateForPleasantTask";
+            this.Text = "InputDateForPleasantTask";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,8 +78,8 @@
 
         #endregion
 
-        private Label lUserName;
-        private TextBox tbUserName;
+        private DateTimePicker dtpDate;
+        private Label label1;
         private Button bConfirm;
     }
 }

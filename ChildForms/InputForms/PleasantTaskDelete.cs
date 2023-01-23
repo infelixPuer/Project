@@ -9,12 +9,12 @@ public partial class PleasantTaskDelete : Form
     public PleasantTaskDelete()
     {
         InitializeComponent();
-        cbPleasantTask.DataSource = PleasantTasksList;
+        cbPleasantTask.DataSource = PleasantTasksShopList;
     }
 
     private void bDelete_Click(object sender, EventArgs e)
     {
-        PleasantTasksList.Remove(PleasantTasksList.ElementAt(cbPleasantTask.SelectedIndex));
+        PleasantTasksShopList.Remove(PleasantTasksShopList.ElementAt(cbPleasantTask.SelectedIndex));
         this.Close();
     }
 
