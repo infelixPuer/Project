@@ -1,3 +1,4 @@
+using Microsoft.Win32;
 using Project.ChildForms;
 using System.Text.Json;
 
@@ -7,10 +8,14 @@ public partial class MainForm : Form
 {
     private const string TaskTypesListFileName = "TaskTypesList.json";
     private const string TasksListFileName = "TasksList.json";
+    private const string PleasantTasksListFileName = "PleasantTasksList.json";
     private string _jsonString;
 
-    public static List<TaskType> TaskTypes = new();
-    public static List<Task> Tasks = new();
+    public static List<TaskType> TaskTypesList = new();
+    public static List<Task> TasksList = new();
+    public static List<PleasantTask> PleasantTasksList = new();
+
+    public User User;
 
     private Form _activeForm;
 
@@ -18,11 +23,12 @@ public partial class MainForm : Form
     {
         InitializeComponent();
         this.StartPosition = FormStartPosition.CenterScreen;
+        GetUserName();
 
         if (File.Exists(TaskTypesListFileName))
         {
             _jsonString = File.ReadAllText(TaskTypesListFileName);
-            TaskTypes = JsonSerializer.Deserialize<List<TaskType>>(_jsonString);
+            TaskTypesList = JsonSerializer.Deserialize<List<TaskType>>(_jsonString);
         }
         else
         {
@@ -32,16 +38,47 @@ public partial class MainForm : Form
         if (File.Exists(TasksListFileName))
         {
             _jsonString = File.ReadAllText(TasksListFileName);
-            Tasks = JsonSerializer.Deserialize<List<Task>>(_jsonString);
+            TasksList = JsonSerializer.Deserialize<List<Task>>(_jsonString);
+        }
+
+        if (File.Exists(PleasantTasksListFileName))
+        {
+            _jsonString = File.ReadAllText(PleasantTasksListFileName);
+            PleasantTasksList = JsonSerializer.Deserialize<List<PleasantTask>>(_jsonString);
+        }
+        else
+        {
+            AddDefaultPleasantTasks();
+        }
+    }
+
+    private static void GetUserName()
+    {
+        string keyName = "FirstRun";
+
+        var key = Registry.CurrentUser.CreateSubKey("Project");
+
+        if (key.GetValue(keyName) == null)
+        {
+
+            key.SetValue(keyName, false);
         }
     }
 
     private void AddDefaultTypes()
     {
-        TaskTypes.Add(new TaskType("Easy", 5));
-        TaskTypes.Add(new TaskType("Casual", 10));
-        TaskTypes.Add(new TaskType("Hard", 15));
-        TaskTypes.Add(new TaskType("Very hard", 25));
+        TaskTypesList.Add(new TaskType("Easy", 5));
+        TaskTypesList.Add(new TaskType("Casual", 10));
+        TaskTypesList.Add(new TaskType("Hard", 15));
+        TaskTypesList.Add(new TaskType("Very hard", 25));
+    }
+
+    private void AddDefaultPleasantTasks()
+    {
+        PleasantTasksList.Add(new PleasantTask("Go to the cinema", 25, ""));
+        PleasantTasksList.Add(new PleasantTask("Play computer games", 20, ""));
+        PleasantTasksList.Add(new PleasantTask("Buy ice-cream", 10, ""));
+        PleasantTasksList.Add(new PleasantTask("Make party", 40, ""));
     }
 
     private void bTasks_Click(object sender, EventArgs e)
@@ -61,7 +98,7 @@ public partial class MainForm : Form
             SaveFormControls((ISavableControls)_activeForm);
         }
 
-        ActivateChildForm(new TasksTypes());
+        ActivateChildForm(new TaskTypes());
     }
 
     private void bPleasantTasks_Click(object sender, EventArgs e)

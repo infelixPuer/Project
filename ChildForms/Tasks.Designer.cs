@@ -64,8 +64,8 @@
             this.Controls.Add(this.bAdd);
             this.MaximumSize = new System.Drawing.Size(650, 405);
             this.MinimumSize = new System.Drawing.Size(650, 405);
-            this.Name = "Tasks";
-            this.Text = "Tasks";
+            this.Name = "TasksList";
+            this.Text = "TasksList";
             this.ResumeLayout(false);
 
         }

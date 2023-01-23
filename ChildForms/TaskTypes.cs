@@ -4,13 +4,13 @@ using static Project.MainForm;
 
 namespace Project.ChildForms;
 
-public partial class TasksTypes : Form, ISavableControls
+public partial class TaskTypes : Form, ISavableControls
 {
-    private const string TaskTypesControlsFileName = "TasksTypesControls.json";
+    private const string TasksTypesControlsFileName = "TasksTypesControls.json";
     private const string TaskTypesListFileName = "TaskTypesList.json";
     private string _jsonString;
 
-    public TasksTypes()
+    public TaskTypes()
     {
         InitializeComponent();
         UploadTypes();
@@ -18,28 +18,27 @@ public partial class TasksTypes : Form, ISavableControls
 
     private void UploadTypes()
     {
-        if (File.Exists(TaskTypesControlsFileName)) 
+        if (File.Exists(TasksTypesControlsFileName)) 
         {
             return; 
         }
 
-        AddDefaultTypes();
         DisplayDefaultTypes();
     }
 
     private void AddDefaultTypes()
-    {        
-        TaskTypes.Add(new TaskType("Easy", 5));
-        TaskTypes.Add(new TaskType("Casual", 10));
-        TaskTypes.Add(new TaskType("Hard", 15));
-        TaskTypes.Add(new TaskType("Very hard", 25));
+    {
+        TaskTypesList.Add(new TaskType("Easy", 5));
+        TaskTypesList.Add(new TaskType("Casual", 10));
+        TaskTypesList.Add(new TaskType("Hard", 15));
+        TaskTypesList.Add(new TaskType("Very hard", 25));
     }
 
     public void DisplayDefaultTypes()
     {
-        for (int i = 0; i < TaskTypes.Count; i++)
+        for (int i = 0; i < TaskTypesList.Count; i++)
         {
-            TaskTypes[i].SetTools(this, i);
+            TaskTypesList[i].SetTools(this, i);
         }
     }
 
@@ -61,16 +60,16 @@ public partial class TasksTypes : Form, ISavableControls
         }
 
         _jsonString = JsonSerializer.Serialize(controlPropierties);
-        File.WriteAllText(TaskTypesControlsFileName, _jsonString);
-        _jsonString = JsonSerializer.Serialize(TaskTypes);
+        File.WriteAllText(TasksTypesControlsFileName, _jsonString);
+        _jsonString = JsonSerializer.Serialize(TaskTypesList);
         File.WriteAllText(TaskTypesListFileName, _jsonString);
     }
 
     public void LoadControls()
     {
-        if (!File.Exists(TaskTypesControlsFileName)) { return; }        
+        if (!File.Exists(TasksTypesControlsFileName)) { return; }        
 
-        _jsonString = File.ReadAllText(TaskTypesControlsFileName);
+        _jsonString = File.ReadAllText(TasksTypesControlsFileName);
         var controls = JsonSerializer.Deserialize<List<ControlProperties>>(_jsonString);
 
         if (controls == null) { return; }

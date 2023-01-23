@@ -1,6 +1,6 @@
-﻿namespace Project.ChildForms
+﻿namespace Project.ChildForms.InputForms
 {
-    partial class PleasantTasks
+    partial class UserNameInput
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Pleasant tasks";
-            // 
-            // PleasantTasks
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
-            this.Name = "PleasantTasksList";
-            this.Text = "PleasantTasksList";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.Text = "UserNameInput";
         }
 
         #endregion
-
-        private TextBox textBox1;
     }
 }

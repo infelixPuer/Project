@@ -12,7 +12,7 @@ public partial class TasksInput : Form
     public TasksInput()
     {
         InitializeComponent();
-        cbType.DataSource = TaskTypes;
+        cbType.DataSource = MainForm.TaskTypesList;
     }
 
     private void bAdd_Click(object sender, EventArgs e)
@@ -23,7 +23,7 @@ public partial class TasksInput : Form
             return;
         }
 
-        MainForm.Tasks.Add(new Task(tbName.Text, TaskTypes.ElementAt(cbType.SelectedIndex), dtpDeadline.Text));
+        MainForm.TasksList.Add(new Task(tbName.Text, MainForm.TaskTypesList.ElementAt(cbType.SelectedIndex), dtpDeadline.Text));
         this.Close();
     }
 

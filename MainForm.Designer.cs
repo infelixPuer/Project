@@ -87,7 +87,7 @@
             this.bTasksTypes.Name = "bTasksTypes";
             this.bTasksTypes.Size = new System.Drawing.Size(150, 45);
             this.bTasksTypes.TabIndex = 1;
-            this.bTasksTypes.Text = "Tasks types";
+            this.bTasksTypes.Text = "TasksList types";
             this.bTasksTypes.UseVisualStyleBackColor = true;
             this.bTasksTypes.Click += new System.EventHandler(this.bTasksTypes_Click);
             // 
@@ -98,7 +98,7 @@
             this.bTasks.Name = "bTasks";
             this.bTasks.Size = new System.Drawing.Size(150, 45);
             this.bTasks.TabIndex = 0;
-            this.bTasks.Text = "Tasks";
+            this.bTasks.Text = "TasksList";
             this.bTasks.UseVisualStyleBackColor = true;
             this.bTasks.Click += new System.EventHandler(this.bTasks_Click);
             // 

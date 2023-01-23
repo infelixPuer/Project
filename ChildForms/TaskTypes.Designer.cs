@@ -1,6 +1,6 @@
 ﻿namespace Project.ChildForms
 {
-    partial class TasksTypes
+    partial class TaskTypes
     {
         /// <summary>
         /// Required designer variable.
@@ -61,8 +61,8 @@
             this.ClientSize = new System.Drawing.Size(634, 366);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bAdd);
-            this.Name = "TasksTypes";
-            this.Text = "TasksTypes";
+            this.Name = "TaskTypesList";
+            this.Text = "TaskTypesList";
             this.ResumeLayout(false);
 
         }

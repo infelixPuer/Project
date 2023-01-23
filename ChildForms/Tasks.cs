@@ -33,7 +33,7 @@ public partial class Tasks : Form, ISavableControls
 
         _jsonString = JsonSerializer.Serialize(controlPropierties);
         File.WriteAllText(TasksControlsFileName, _jsonString);
-        _jsonString = JsonSerializer.Serialize(MainForm.Tasks);
+        _jsonString = JsonSerializer.Serialize(MainForm.TasksList);
         File.WriteAllText(TasksListFileName, _jsonString);
     }
 
@@ -70,9 +70,9 @@ public partial class Tasks : Form, ISavableControls
 
     public void DisplayTasks()
     {
-        for (int i = 0; i < MainForm.Tasks.Count; i++)
+        for (int i = 0; i < MainForm.TasksList.Count; i++)
         {
-            MainForm.Tasks[i].SetTools(this, i);
+            MainForm.TasksList[i].SetTools(this, i);
         }
     }
 

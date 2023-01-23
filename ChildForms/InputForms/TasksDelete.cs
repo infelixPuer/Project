@@ -7,12 +7,12 @@ public partial class TasksDelete : Form
     public TasksDelete()
     {
         InitializeComponent();
-        cbTask.DataSource = MainForm.Tasks;
+        cbTask.DataSource = MainForm.TasksList;
     }
 
     private void bDelete_Click(object sender, EventArgs e)
     {
-        MainForm.Tasks.Remove(MainForm.Tasks.ElementAt(cbTask.SelectedIndex));
+        MainForm.TasksList.Remove(MainForm.TasksList.ElementAt(cbTask.SelectedIndex));
         this.Close();
     }
 

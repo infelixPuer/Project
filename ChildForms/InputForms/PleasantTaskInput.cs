@@ -1,16 +1,14 @@
-﻿using static Project.MainForm;
+﻿namespace Project.ChildForms.InputForms;
 
-namespace Project.ChildForms.InputForms;
-
-public partial class TaskTypeInput : Form
+public partial class PleasantTaskInput : Form
 {
     private const string NameWarning = "Name must consist of letters only!";
     private const string CostWarning = "Cost must consist of digits only!";
     private const string Caption = "Wrong spelling";
 
-    public TaskTypes ParentForm { get; set; }
+    public PleasantTasksShop ParentForm { get; set; }
 
-    public TaskTypeInput()
+    public PleasantTaskInput()
     {
         InitializeComponent();
     }
@@ -29,7 +27,7 @@ public partial class TaskTypeInput : Form
             return;
         }
 
-        MainForm.TaskTypesList.Add(new TaskType(tbName.Text, int.Parse(tbCost.Text)));
+        MainForm.PleasantTasksList.Add(new PleasantTask(tbName.Text, int.Parse(tbCost.Text), ""));
         this.Close();
     }
 
@@ -40,7 +38,7 @@ public partial class TaskTypeInput : Form
         foreach (var c in name)
         {
             if (char.IsLetter(c) || char.IsWhiteSpace(c)) { continue; }
-            
+
             return false;
         }
 
@@ -76,13 +74,13 @@ public partial class TaskTypeInput : Form
         }
     }
 
-    private void TaskTypeInput_FormClosing(object sender, FormClosingEventArgs e)
+    private void PleasantTaskInput_FormClosing(object sender, FormClosingEventArgs e)
     {
         var count = ParentForm.Controls.Count - 2;
         for (int i = 0; i < count; i++)
         {
             ParentForm.Controls.RemoveAt(2);
         }
-        ParentForm.DisplayDefaultTypes();
+        ParentForm.DisplayDefaultPleasantTasks();
     }
 }
