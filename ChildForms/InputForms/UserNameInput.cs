@@ -23,9 +23,9 @@ public partial class UserNameInput : Form
             return;
         }
 
-        ParentForm.User = new User(tbUserName.Text);
-        ParentForm.lName.Text = ParentForm.User.Name;
-        ParentForm.lCurrentBalance.Text = ParentForm.User.Balance.ToString();
+        MainForm.CurrentUser = new User(tbUserName.Text);
+        ParentForm.lName.Text = MainForm.CurrentUser.Name;
+        ParentForm.lCurrentBalance.Text = MainForm.CurrentUser.Balance.ToString();
         this.Close();
     }
 

@@ -18,10 +18,10 @@ public partial class TasksDelete : Form
 
     private void TasksDelete_FormClosing(object sender, FormClosingEventArgs e)
     {
-        var count = ParentForm.Controls.Count - 2;
+        var count = ParentForm.Controls.Count - 3;
         for (int i = 0; i < count; i++)
         {
-            ParentForm.Controls.RemoveAt(2);
+            ParentForm.Controls.RemoveAt(3);
         }
         ParentForm.DisplayTasks();
     }

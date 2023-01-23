@@ -35,33 +35,33 @@
             // bAdd
             // 
             this.bAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bAdd.Location = new System.Drawing.Point(526, 309);
+            this.bAdd.Location = new System.Drawing.Point(466, 331);
             this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(45, 45);
+            this.bAdd.Size = new System.Drawing.Size(75, 23);
             this.bAdd.TabIndex = 0;
-            this.bAdd.Text = "+";
+            this.bAdd.Text = "Add";
             this.bAdd.UseVisualStyleBackColor = true;
             this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(577, 309);
+            this.button1.Location = new System.Drawing.Point(547, 331);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 45);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "-";
+            this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // TasksTypes
+            // TaskTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 366);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bAdd);
-            this.Name = "TaskTypesList";
+            this.Name = "TaskTypes";
             this.Text = "TaskTypesList";
             this.ResumeLayout(false);
 

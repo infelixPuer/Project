@@ -29,22 +29,26 @@
         private void InitializeComponent()
         {
             this.pStatusBar = new System.Windows.Forms.Panel();
+            this.lName = new System.Windows.Forms.Label();
+            this.lUserName = new System.Windows.Forms.Label();
+            this.lCurrentBalance = new System.Windows.Forms.Label();
+            this.lBalance = new System.Windows.Forms.Label();
             this.pButtons = new System.Windows.Forms.Panel();
             this.bPleasantTasksShop = new System.Windows.Forms.Button();
             this.bPleasantTasks = new System.Windows.Forms.Button();
             this.bTasksTypes = new System.Windows.Forms.Button();
             this.bTasks = new System.Windows.Forms.Button();
             this.pWindows = new System.Windows.Forms.Panel();
-            this.lBalance = new System.Windows.Forms.Label();
-            this.lCurrentBalance = new System.Windows.Forms.Label();
-            this.lUserName = new System.Windows.Forms.Label();
-            this.lName = new System.Windows.Forms.Label();
+            this.lDate = new System.Windows.Forms.Label();
+            this.lCurrentDate = new System.Windows.Forms.Label();
             this.pStatusBar.SuspendLayout();
             this.pButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pStatusBar
             // 
+            this.pStatusBar.Controls.Add(this.lCurrentDate);
+            this.pStatusBar.Controls.Add(this.lDate);
             this.pStatusBar.Controls.Add(this.lName);
             this.pStatusBar.Controls.Add(this.lUserName);
             this.pStatusBar.Controls.Add(this.lCurrentBalance);
@@ -54,6 +58,40 @@
             this.pStatusBar.Name = "pStatusBar";
             this.pStatusBar.Size = new System.Drawing.Size(800, 45);
             this.pStatusBar.TabIndex = 0;
+            // 
+            // lName
+            // 
+            this.lName.AutoSize = true;
+            this.lName.Location = new System.Drawing.Point(222, 18);
+            this.lName.Name = "lName";
+            this.lName.Size = new System.Drawing.Size(0, 15);
+            this.lName.TabIndex = 3;
+            // 
+            // lUserName
+            // 
+            this.lUserName.AutoSize = true;
+            this.lUserName.Location = new System.Drawing.Point(150, 18);
+            this.lUserName.Name = "lUserName";
+            this.lUserName.Size = new System.Drawing.Size(66, 15);
+            this.lUserName.TabIndex = 2;
+            this.lUserName.Text = "User name:";
+            // 
+            // lCurrentBalance
+            // 
+            this.lCurrentBalance.AutoSize = true;
+            this.lCurrentBalance.Location = new System.Drawing.Point(69, 18);
+            this.lCurrentBalance.Name = "lCurrentBalance";
+            this.lCurrentBalance.Size = new System.Drawing.Size(0, 15);
+            this.lCurrentBalance.TabIndex = 1;
+            // 
+            // lBalance
+            // 
+            this.lBalance.AutoSize = true;
+            this.lBalance.Location = new System.Drawing.Point(12, 18);
+            this.lBalance.Name = "lBalance";
+            this.lBalance.Size = new System.Drawing.Size(51, 15);
+            this.lBalance.TabIndex = 0;
+            this.lBalance.Text = "Balance:";
             // 
             // pButtons
             // 
@@ -119,39 +157,23 @@
             this.pWindows.Size = new System.Drawing.Size(650, 405);
             this.pWindows.TabIndex = 2;
             // 
-            // lBalance
+            // lDate
             // 
-            this.lBalance.AutoSize = true;
-            this.lBalance.Location = new System.Drawing.Point(12, 18);
-            this.lBalance.Name = "lBalance";
-            this.lBalance.Size = new System.Drawing.Size(51, 15);
-            this.lBalance.TabIndex = 0;
-            this.lBalance.Text = "Balance:";
+            this.lDate.AutoSize = true;
+            this.lDate.Location = new System.Drawing.Point(650, 18);
+            this.lDate.Name = "lDate";
+            this.lDate.Size = new System.Drawing.Size(34, 15);
+            this.lDate.TabIndex = 4;
+            this.lDate.Text = "Date:";
             // 
-            // lCurrentBalance
+            // lCurrentDate
             // 
-            this.lCurrentBalance.AutoSize = true;
-            this.lCurrentBalance.Location = new System.Drawing.Point(69, 18);
-            this.lCurrentBalance.Name = "lCurrentBalance";
-            this.lCurrentBalance.Size = new System.Drawing.Size(0, 15);
-            this.lCurrentBalance.TabIndex = 1;
-            // 
-            // lUserName
-            // 
-            this.lUserName.AutoSize = true;
-            this.lUserName.Location = new System.Drawing.Point(150, 18);
-            this.lUserName.Name = "lUserName";
-            this.lUserName.Size = new System.Drawing.Size(66, 15);
-            this.lUserName.TabIndex = 2;
-            this.lUserName.Text = "User name:";
-            // 
-            // lName
-            // 
-            this.lName.AutoSize = true;
-            this.lName.Location = new System.Drawing.Point(222, 18);
-            this.lName.Name = "lName";
-            this.lName.Size = new System.Drawing.Size(0, 15);
-            this.lName.TabIndex = 3;
+            this.lCurrentDate.AutoSize = true;
+            this.lCurrentDate.Location = new System.Drawing.Point(690, 18);
+            this.lCurrentDate.Name = "lCurrentDate";
+            this.lCurrentDate.Size = new System.Drawing.Size(38, 15);
+            this.lCurrentDate.TabIndex = 5;
+            this.lCurrentDate.Text = "label1";
             // 
             // MainForm
             // 
@@ -184,5 +206,7 @@
         private Label lUserName;
         public Label lCurrentBalance;
         private Label lBalance;
+        private Label lCurrentDate;
+        private Label lDate;
     }
 }

@@ -42,21 +42,11 @@ public class TaskType
 
     public void SetTools(Form form, int index)
     {
-        _cbCompleted = new()
-        {
-            AutoSize = true,
-            Text = "",
-            Location = new Point(LeftMargin, UpMargin + index * DistanceBetweenTasks),
-            Visible = true
-        };
-        form.Controls.Add(_cbCompleted);
-
         _lName = new()
         {
             AutoSize = true,
             Text = Name,
-            Location = new Point(_cbCompleted.Location.X + _cbCompleted.Size.Width + DistanceBetweenArguments,
-            _cbCompleted.Location.Y)
+            Location = new Point(LeftMargin, UpMargin + index * DistanceBetweenTasks)
         };
         form.Controls.Add(_lName);
 

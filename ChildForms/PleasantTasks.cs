@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using Project.ChildForms.InputForms;
+using System.Reflection;
 using System.Text.Json;
+using static Project.MainForm;
 
 namespace Project.ChildForms;
 
@@ -17,9 +19,9 @@ public partial class PleasantTasks : Form, ISavableControls
 
     public void DisplayTasks()
     {
-        for (int i = 0; i < MainForm.PleasantTasksList.Count; i++)
+        for (int i = 0; i < PleasantTasksList.Count; i++)
         {
-            MainForm.PleasantTasksList[i].SetTools(this, i);
+            PleasantTasksList[i].SetTools(this, i);
         }
     }
 
@@ -80,6 +82,33 @@ public partial class PleasantTasks : Form, ISavableControls
 
     private void bCompleted_Click(object sender, EventArgs e)
     {
+        var checkBoxes = new List<CheckBox>();
+        var tasksToRemove = new List<PleasantTask>();
 
+        for (int i = 0; i < PleasantTasksList.Count; i++)
+        {
+            checkBoxes.Add((CheckBox)Controls.Find($"cbCompleted_{i}", true)[0]);
+        }
+
+        for (int i = 0; i < checkBoxes.Count; i++)
+        {
+            if (checkBoxes[i].Checked)
+            {
+                tasksToRemove.Add(PleasantTasksList[i]);
+            }
+        }
+
+        foreach (var task in tasksToRemove)
+        {
+            PleasantTasksList.Remove(task);
+        }
+
+        var count = Controls.Count - 1;
+        for (int i = 0; i < count; i++)
+        {
+            Controls.RemoveAt(1);
+        }
+
+        DisplayTasks();
     }
 }

@@ -66,6 +66,7 @@ public class Task
     {
         _cbCompleted = new()
         {
+            Name = $"cbCompleted_{index}",
             AutoSize = true,
             Text = "",
             Location = new Point(LeftMargin, UpMargin + index * DistanceBetweenTasks)

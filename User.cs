@@ -8,7 +8,7 @@ public class User
     public User(string name)
     {
         Name = name;
-        Balance = int.MaxValue;
+        Balance = 0;
     }
 
     public void AddToBalance(int value)

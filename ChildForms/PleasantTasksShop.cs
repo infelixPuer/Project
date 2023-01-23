@@ -11,6 +11,11 @@ public partial class PleasantTasksShop : Form, ISavableControls
     private const string PleasantTasksListFileName = "PleasantTasksShopList.json";
     private string _jsonString;
 
+    private const string NotEnoughPointsWarningMessage = "You haven't got enough points to buy this task!";
+    private const string Caption = "Not enough points";
+
+    public MainForm ParentForm { get; set; }
+
     public PleasantTasksShop()
     {
         InitializeComponent();
@@ -91,7 +96,7 @@ public partial class PleasantTasksShop : Form, ISavableControls
 
     private void bAdd_Click(object sender, EventArgs e)
     {
-        var inputForm = new InputForms.PleasantTaskInput();
+        var inputForm = new PleasantTaskInput();
         inputForm.StartPosition = FormStartPosition.CenterScreen;
         inputForm.ParentForm = this;
         inputForm.ShowDialog();
@@ -99,7 +104,7 @@ public partial class PleasantTasksShop : Form, ISavableControls
 
     private void bDelete_Click(object sender, EventArgs e)
     {
-        var inputForm = new InputForms.PleasantTaskDelete();
+        var inputForm = new PleasantTaskDelete();
         inputForm.StartPosition = FormStartPosition.CenterScreen;
         inputForm.ParentForm = this;
         inputForm.ShowDialog();
@@ -108,6 +113,7 @@ public partial class PleasantTasksShop : Form, ISavableControls
     private void bBuy_Click(object sender, EventArgs e)
     {
         var checkBoxes = new List<CheckBox>();
+        var totalCost = 0;
 
         for (int i = 0; i < PleasantTasksShopList.Count; i++)
         {
@@ -118,11 +124,31 @@ public partial class PleasantTasksShop : Form, ISavableControls
         {
             if (checkBoxes[i].Checked)
             {
+                totalCost += PleasantTasksShopList[i].Cost;
+            }
+        }
+
+        if (totalCost > CurrentUser.Balance)
+        {
+            DisplayWarning();
+            return;
+        }
+
+        for (int i = 0; i < checkBoxes.Count; i++)
+        {
+            if (checkBoxes[i].Checked)
+            {
                 var inputForm = new InputDateForPleasantTask();
                 inputForm.StartPosition = FormStartPosition.CenterScreen;
                 inputForm.Index = i;
+                inputForm.ParentForm = ParentForm;
                 inputForm.ShowDialog();
             }
         }
+    }
+
+    private void DisplayWarning()
+    {
+        MessageBox.Show(NotEnoughPointsWarningMessage, Caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);        
     }
 }

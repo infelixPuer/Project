@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json;
+using static Project.MainForm;
 
 namespace Project.ChildForms;
 
@@ -9,16 +10,19 @@ public partial class Tasks : Form, ISavableControls
     private const string TasksListFileName = "TasksList.json";
     private string _jsonString;
 
+    public MainForm ParentForm { get; set; }
+
     public Tasks()
     {
         InitializeComponent();
+        DisplayTasks();
     }
 
     public void DisplayTasks()
     {
-        for (int i = 0; i < MainForm.TasksList.Count; i++)
+        for (int i = 0; i < TasksList.Count; i++)
         {
-            MainForm.TasksList[i].SetTools(this, i);
+            TasksList[i].SetTools(this, i);
         }
     }
 
@@ -90,5 +94,39 @@ public partial class Tasks : Form, ISavableControls
         deleteForm.StartPosition = FormStartPosition.CenterScreen;
         deleteForm.ParentForm = this;
         deleteForm.ShowDialog();
+    }
+
+    private void bComplete_Click(object sender, EventArgs e)
+    {
+        var checkBoxes = new List<CheckBox>();
+        var tasksToRemove = new List<Task>();
+
+        for (int i = 0; i < TasksList.Count; i++)
+        {
+            checkBoxes.Add((CheckBox)Controls.Find($"cbCompleted_{i}", true)[0]);
+        }
+
+        for (int i = 0; i < checkBoxes.Count; i++)
+        {
+            if (checkBoxes[i].Checked)
+            {
+                tasksToRemove.Add(TasksList[i]);
+            }
+        }
+
+        foreach (var task in tasksToRemove)
+        {
+            CurrentUser.AddToBalance(task.Type.Cost);
+            ParentForm.lCurrentBalance.Text = CurrentUser.Balance.ToString();
+            TasksList.Remove(task);
+        }
+
+        var count = Controls.Count - 3;
+        for (int i = 0; i < count; i++)
+        {
+            Controls.RemoveAt(3);
+        }
+
+        DisplayTasks();
     }
 }

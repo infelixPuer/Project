@@ -19,7 +19,7 @@ public partial class MainForm : Form
     public static List<PleasantTask> PleasantTasksList = new();
     public static List<PleasantTask> PleasantTasksShopList = new();
 
-    public User User;
+    public static User CurrentUser;
 
     private Form _activeForm;
 
@@ -27,6 +27,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
         this.StartPosition = FormStartPosition.CenterScreen;
+        lCurrentDate.Text = DateTime.Now.ToShortDateString();
         GetUserName();
 
         if (File.Exists(TaskTypesListFileName))
@@ -79,10 +80,10 @@ public partial class MainForm : Form
         }
 
         _jsonString = File.ReadAllText(UserInfoFileName);
-        User = JsonSerializer.Deserialize<User>(_jsonString);
+        CurrentUser = JsonSerializer.Deserialize<User>(_jsonString);
 
-        lName.Text = User.Name;
-        lCurrentBalance.Text = User.Balance.ToString();
+        lName.Text = CurrentUser.Name;
+        lCurrentBalance.Text = CurrentUser.Balance.ToString();
     }
 
     private void AddDefaultTypes()
@@ -108,7 +109,10 @@ public partial class MainForm : Form
             SaveFormControls((ISavableControls) _activeForm);
         }
 
-        ActivateChildForm(new Tasks());
+        var tasks = new Tasks();
+        tasks.ParentForm = this;
+
+        ActivateChildForm(tasks);
     }
 
     private void bTasksTypes_Click(object sender, EventArgs e)
@@ -138,7 +142,10 @@ public partial class MainForm : Form
             SaveFormControls((ISavableControls)_activeForm);
         }
 
-        ActivateChildForm(new PleasantTasksShop());
+        var shop = new PleasantTasksShop();
+        shop.ParentForm = this;
+
+        ActivateChildForm(shop);
     }
 
     private void ActivateChildForm(Form childForm)
@@ -175,7 +182,7 @@ public partial class MainForm : Form
     {
         SaveFormControls((ISavableControls)_activeForm);
 
-        _jsonString = JsonSerializer.Serialize(User);
+        _jsonString = JsonSerializer.Serialize(CurrentUser);
         File.WriteAllText(UserInfoFileName, _jsonString);
     }   
 }

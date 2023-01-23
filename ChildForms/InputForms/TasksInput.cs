@@ -12,7 +12,7 @@ public partial class TasksInput : Form
     public TasksInput()
     {
         InitializeComponent();
-        cbType.DataSource = MainForm.TaskTypesList;
+        cbType.DataSource = TaskTypesList;
     }
 
     private void bAdd_Click(object sender, EventArgs e)
@@ -22,8 +22,8 @@ public partial class TasksInput : Form
             DisplayWarning();
             return;
         }
-
-        MainForm.TasksList.Add(new Task(tbName.Text, MainForm.TaskTypesList.ElementAt(cbType.SelectedIndex), dtpDeadline.Text));
+        var deadline = DateOnly.Parse(dtpDeadline.Text).ToString();
+        TasksList.Add(new Task(tbName.Text, TaskTypesList.ElementAt(cbType.SelectedIndex), deadline));
         this.Close();
     }
 
@@ -49,10 +49,10 @@ public partial class TasksInput : Form
 
     private void TasksInput_FormClosing(object sender, FormClosingEventArgs e)
     {
-        var count = ParentForm.Controls.Count - 2;
+        var count = ParentForm.Controls.Count - 3;
         for (int i = 0; i < count; i++)
         {
-            ParentForm.Controls.RemoveAt(2);
+            ParentForm.Controls.RemoveAt(3);
         }
         ParentForm.DisplayTasks();
     }

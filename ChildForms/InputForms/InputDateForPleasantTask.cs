@@ -1,8 +1,11 @@
-﻿namespace Project.ChildForms.InputForms;
+﻿using static Project.MainForm;
+
+namespace Project.ChildForms.InputForms;
 
 public partial class InputDateForPleasantTask : Form
 {
     public int Index { get; set; }
+    public MainForm ParentForm { get; set; }
 
     public InputDateForPleasantTask()
     {
@@ -12,9 +15,11 @@ public partial class InputDateForPleasantTask : Form
     private void bConfirm_Click(object sender, EventArgs e)
     {
         var date = DateOnly.Parse(dtpDate.Text).ToString();
-        var task = MainForm.PleasantTasksShopList.ElementAt(Index);
+        var task = PleasantTasksShopList.ElementAt(Index);
         task.Date = date;
-        MainForm.PleasantTasksList.Add(task);
+        PleasantTasksList.Add(task);
+        CurrentUser.SubtractFromBalance(task.Cost);
+        ParentForm.lCurrentBalance.Text = CurrentUser.Balance.ToString();
         this.Close();
     }
 }
